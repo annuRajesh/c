@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include<math.h>
+
+struct poly
+{
+    int c;//coefficient storing
+    int e;//exponent storing
+};
+struct poly a[50];//declaring polynomial
+int main(){
+    int i;int d1,d2;
+    int k=0,l=0,m=0;
+    printf("Enter the highest degree of polynomial: ");
+    scanf("%d",&d1);
+    printf("Enter the terms: ");
+    for(i=0;i<d1;i++)
+    {
+        printf("Enter the coefficient of x^%d:",i);
+        scanf("%d",&a[i].c);
+    }
+    for(i=0;i<d1;i++)
+    {
+        printf("%dx^%d",a[i].c,a[i].e);
+        printf("+");
+        
+        
+    }
+}
+
