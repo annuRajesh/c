@@ -1,71 +1,94 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-int MAXSIZE = 8;       
-int stack[8];     
-int top = -1;            
-
-int isempty() {
-
-   if(top == -1)
-      return 1;
+int stack[100],top=-1;
+int size;
+void push()
+{
+ int N;
+ printf("Enter the element to push \n\n\n\t\t\t");
+ scanf("%d",&N);
+ if(top==size-1)
+ {
+   printf("stack is overflow  you cant push \n");
+   }
    else
-      return 0;
+   {
+   top++;
+   stack[top]=N;
+   }
 }
-   
-int isfull() {
-
-   if(top == MAXSIZE)
-      return 1;
+void pop()
+{
+  int  item;
+  if(top==-1)
+  {
+  printf("stack is under flow \n");
+  }
+  else
+  {
+  item= stack[top];
+  top--;
+  printf("popped item  is: %d\n",item);
+  }
+ }
+ void peak()
+ {
+  if(top==-1)
+  {
+    printf("stack is empty \n");
+   }
    else
-      return 0;
-}
-
-int peek() {
-   return stack[top];
-}
-
-int pop() {
-   int data;
-	
-   if(!isempty()) {
-      data = stack[top];
-      top = top - 1;   
-      return data;
-   } else {
-      printf("Could not retrieve data, Stack is empty.\n");
+   {
+   printf("\n\n\ttop element is: %d\n\n",stack[top]);
    }
-}
-
-int push(int data) {
-
-   if(!isfull()) {
-      top = top + 1;   
-      stack[top] = data;
-   } else {
-      printf("Could not insert data, Stack is full.\n");
    }
-}
-
-int main() {
-   // push items on to the stack 
-   push(3);
-   push(5);
-   push(9);
-   push(1);
-   push(12);
-   push(15);
-
-   printf("Element at top of the stack: %d\n" ,peek());
-   printf("Elements: \n");
-
-   // print stack data 
-   while(!isempty()) {
-      int data = pop();
-      printf("%d\n",data);
-   }
-
-   printf("Stack full: %s\n" , isfull()?"true":"false");
-   printf("Stack empty: %s\n" , isempty()?"true":"false");
+  void display()
+  {
+   int i;
+   if(top==-1)
+   {
+    printf("stack is empty \n");
+    }
+    else
    
-   return 0;
+    {
+    printf("THe Elements are: \n\n");
+    for(i=top;i>=0;i--)
+   {
+    printf("\t\t\n\n%d\n\n",stack[i]);
+    }
+    }
+    }
+ int main()
+  {
+   int opt;
+   printf("Enter the size of the stack\n");
+   scanf("%d",&size);
+   
+do
+   {
+   
+    printf("\n\t1.push\n\n\t2.pop\n\n\t3.peak\n\n\t4.display\n\n\t5.exit\n");
+    //printf("-------------------------------------------------------------");
+    printf("\n\n enter the choice\n\n\t\t\t");
+    scanf("%d",&opt);
+    switch(opt)
+    {
+    case 1:push();
+    break;
+    case 2:pop();
+    break;
+    case 3:peak();
+    break;
+    case 4:display();
+    break;
+    case 5:exit(0);
+    default:
+    printf("invalid input");
+    break;
+    }
+    }while(opt!=5);
+    return 0;
+    }
 }
